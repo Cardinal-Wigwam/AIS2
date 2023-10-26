@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket to Power BI</title>
+</head>
+<body>
+    <h1>WebSocket Data</h1>
+    <div id="data"></div>
+
+    <script>
+        // Initialize WebSocket with API key
+        const apiKey = "a3ad155ed2d2d2875a0e7d0f29fcc452c4e22a91e";
+        const ws = new WebSocket(`wss://stream.aisstream.io/v0/stream?apiKey=${apiKey}`);
+
+        // Event listener for WebSocket open event
+        ws.addEventListener('open', function(event) {
+            console.log('WebSocket is open now.');
+        });
+
+        // Event listener for WebSocket message event
+        ws.addEventListener('message', function(event) {
+            console.log('WebSocket message received:', event.data);
+            document.getElementById('data').innerHTML = event.data;
+        });
+    </script>
+</body>
+</html>
